@@ -3,7 +3,15 @@ import json
 import newspaper
 from newspaper import Article
 from time import mktime
-from datetime import datetime
+from datetime import datetime, timedelta
+
+latest = (datetime.now() - timedelta(days=1)).date()
+
+def dateLessThan(date1,date2):
+   datetime1 = datetime.strptime(date1, '%Y/%m/%d')
+   datetime2 = datetime.strptime(date2, '%Y/%m/%d')
+   
+   return datetime1 > datetime2
 
 # Set the limit for number of articles to download
 LIMIT = 4
@@ -12,7 +20,7 @@ data = {}
 data['newspapers'] = {}
 
 # Loads the JSON files with news sites
-with open('scraping/NewsPapers.json') as data_file:
+with open('NewsPapers.json') as data_file:
     companies = json.load(data_file)
 
 count = 1
@@ -36,6 +44,10 @@ for company, value in companies.items():
             if hasattr(entry, 'published'):
                 if count > LIMIT:
                     break
+                if dateLessThan(latest , datetime.fromtimestamp(mktime(entry.published_parsed)).isoformat().now().date()):
+                    print("continued")
+                    continue
+                print("entered")
                 article = {}
                 article['link'] = entry.link
                 date = entry.published_parsed

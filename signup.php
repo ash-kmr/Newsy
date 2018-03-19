@@ -2,15 +2,20 @@
 
   include('connection.php');
   session_start();
+  $error="";
   if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-     $username = $conn->escape_string($_POST['fname']);
+     $username = $conn->escape_string($_POST['fid']);
      $password = $conn->escape_string($_POST['lname']);
-     
-     $sql = "select * from User_Authentication where User_ID = '".$username."'"." and Password = '".$password."'";
+     $name = $conn->escape_string($_POST['fname']);
+     $gender = $conn->escape_string($_POST['gender']);
+     $cpassword = $conn->escape_string($_POST['clname']);
+     if($password == $cpassword){
+     //$sql = "select * from User_Authentication where User_ID = '".$username."'"." and Password = '".$password."'";
+     $sql = "insert into user_authentication(User_ID,Password) values ('".$username."','".$password."')"; 
      $result = $conn->query($sql);
    
-     if($result->num_rows > 0){
+     if($result){
       
       
         $_SESSION['login_user'] = $username;
@@ -19,12 +24,15 @@
 
     }
     else
-     $error = "Your Login Name or Password is invalid";
-   
+     $error = "Insert it again";
+    }
+    else{
+      $error = "Password Doesnt match";
+    }
     }
 
 
-  }
+  
   
 ?>
 <!DOCTYPE html>
@@ -76,13 +84,17 @@
   <label for="fid" style="font-size: 1.5em; font-family: Balthazar">User ID</label>
   <input type="text" id="fid" name="fid" placeholder="User ID" required>
   <label for="fname" style="font-size: 1.5em; font-family: Balthazar">Name</label>
-  <input type="text" id="fname" name="fname" placeholder="User ID" required>
+  <input type="text" id="fname" name="fname" placeholder="Name" required>
   <label for="gender" style="font-size: 1.5em; font-family: Balthazar">Gender</label>
-  <input type="text" id="gender" name="gender" placeholder="User ID" required>
+  <input type="text" id="gender" name="gender" placeholder="Gender" required>
   <label for="lname" style="font-size: 1.5em;margin-top: 5%; font-family: Balthazar">Password</label>
   <input style = "color:white" type="password" id="lname" name="lname" placeholder="Password" required>
+    <label for="clname" style="font-size: 1.5em;margin-top: 5%; font-family: Balthazar">Confirm Password</label>
+  <input style = "color:white" type="password" id="clname" name="lname" placeholder="Password" required>
+
   <div style="text-align: center; margin-top: 10%;margin-bottom: 10%"><button type="submit" class = "buttonlogin button3">Signup</button></div>
   </form>
+  <div class="Notify"> <?php echo $error; ?></div>
 </div>
 </div>
 </body>

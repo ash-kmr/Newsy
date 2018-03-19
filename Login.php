@@ -7,7 +7,7 @@
      $username = $conn->escape_string($_POST['fname']);
      $password = $conn->escape_string($_POST['lname']);
      
-     $sql = "select * from User_Authentication where User_ID = '".$username."'"." and Password = '".$password."'";
+     $sql = "select * from user_authentication where User_ID = '".$username."'"." and Password = '".$password."'";
      $result = $conn->query($sql);
    
      if($result->num_rows > 0){
