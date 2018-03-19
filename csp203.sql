@@ -34,8 +34,8 @@ CREATE TABLE `feed` (
   `Date` date DEFAULT NULL,
   `Description` text,
   `UpCount` int(11) DEFAULT NULL,
-	`DownCount` int(11) DEFAULT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+	`DownCount` int(11) DEFAULT NULL
+);
 
 -- --------------------------------------------------------
 
@@ -46,7 +46,7 @@ CREATE TABLE `feed` (
 CREATE TABLE `user_authentication` (
   `User_ID` varchar(30) NOT NULL,
   `Password` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+);
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `voting` (
   `Feed_ID` int(11) NOT NULL,
   `User_ID` varchar(30) NOT NULL,
   `Vote` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ;
 
 --
 -- Indexes for dumped tables

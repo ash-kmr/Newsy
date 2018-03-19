@@ -2,8 +2,8 @@
 
   //$command = 'ls';
   //exec($command, $out, $status);
-  $message = exec('ls *.json');
-  //sprint_r($message);
+  $message = exec('python3 ./scraping/NewsScraper.py');
+  print_r($message);
 
 
 ?>

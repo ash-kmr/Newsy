@@ -1,12 +1,13 @@
 <?php
 
   /*Run php to run python script each hour for extraction of file*/
-  include_once('Run.php');
+  //include_once('Run.php');
   /*Require to Establish connection to database*/
-  include_once('connection.php');
-  
+  include_once('Connection.php');
+  echo "start";
+  echo exec('python3 scraping/NewsScraper.py');
   /*Get Contents of JSON file*/
-  $Json_Feed = file_get_contents('newsarticles.json',true);
+  $Json_Feed = file_get_contents('scraped_articles.json',true);
   
   /*Decodeing JSON format as an associative array*/
   $Feed = json_decode($Json_Feed,true);
@@ -29,6 +30,7 @@
                       $sql = "Insert into Feeds(Title,Date,Description) values ('".$title."','".$Date."','".$content."')"; 
                       $result = $conn->query($sql);
                       
+                      //echo $title;
                
                }
         }
