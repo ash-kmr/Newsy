@@ -38,15 +38,17 @@ src: url(/Delicious-Roman.otf);
 
 /* input */
 input[type=text] {
-    width: 100%;
+    width: 50%;
+    height: 3%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 3px solid #555;
+    border: 3px solid grey;
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
-    background-color: #5E5E5E;
+    border-radius: 5px;
+    background-color: white;
 }
 label{
   color: blue;
@@ -73,7 +75,7 @@ input[type=text]:focus {
   text-indent: -999px;
   cursor: pointer;
   background-color: white;
-  background-color: rgba(255  , 255, 255, 255);
+  background-color: rgba(255, 255, 255, 255);
   opacity: 0.9;
   border: 0px solid #fff;
   border-radius: 0px;
@@ -134,14 +136,6 @@ h2{
   background-color: white;
   border-color: white;
   color:black;
-}
-.separator{
-  width: 100%;
-  height: 5vh;
-  margin-top: 5%;
-  position: relative;
-  background-color: grey;
-  text-align: center;
 }
 .nav.navbar-nav.navbar-right a{
     color: black;
