@@ -33,8 +33,8 @@ CREATE TABLE `feed` (
   `Title` varchar(50) DEFAULT NULL,
   `Date` date DEFAULT NULL,
   `Description` text,
-  `VoteCount` int(11) DEFAULT NULL,
-  `Keywords` varchar(20) NOT NULL
+  `UpCount` int(11) DEFAULT NULL,
+	`DownCount` int(11) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
